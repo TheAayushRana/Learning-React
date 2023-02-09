@@ -5,17 +5,21 @@ import ReducerTutorial from "./Components/ReducerTutorial";
 import EffectTutorial from "./Components/EffectTutorial";
 import RefTutorial from "./Components/RefTutorial";
 import LayoutTutorial from "./Components/LayoutTutorial";
+import ImperativeHandleTutorial from "./Components/imperativeHandleTutorial/ImperativeHandleTutorial";
+import NameContext from "./Components/context/NameContext";
 
 function App() {
   return (
-    <div>
-      <h2 className="text-center">Learning React Hooks</h2>
+    <div className="text-center">
+      <h2>Learning React Hooks</h2>
       {/* <StateTutorial />
-      <StateTutorial2 /> */}
-      {/* <ReducerTutorial /> */}
-      {/* <EffectTutorial /> */}
-      {/* <RefTutorial /> */}
-      <LayoutTutorial />
+      <StateTutorial2 />
+      <ReducerTutorial />
+      <EffectTutorial />
+      <RefTutorial />
+      <LayoutTutorial /> 
+      <ImperativeHandleTutorial /> */}
+      <NameContext />
     </div>
   );
 }
