@@ -7,6 +7,8 @@ import RefTutorial from "./Components/RefTutorial";
 import LayoutTutorial from "./Components/LayoutTutorial";
 import ImperativeHandleTutorial from "./Components/imperativeHandleTutorial/ImperativeHandleTutorial";
 import NameContext from "./Components/context/NameContext";
+import MemoTutorial from "./Components/MemoTutorial";
+import CallbackTutorial from "./Components/callBack/CallbackTutorial";
 
 function App() {
   return (
@@ -18,8 +20,10 @@ function App() {
       <EffectTutorial />
       <RefTutorial />
       <LayoutTutorial /> 
-      <ImperativeHandleTutorial /> */}
+      <ImperativeHandleTutorial /> 
       <NameContext />
+      <MemoTutorial />*/}
+      <CallbackTutorial />
     </div>
   );
 }
