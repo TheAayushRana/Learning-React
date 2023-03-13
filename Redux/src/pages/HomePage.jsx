@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../store/cartSlice";
+import { fetchProducts } from "../store/productSlice";
 
 function HomePage() {
   const dispatch = useDispatch(); // useDispatch hook is used to access redux dispatch function
+  const { data: products, status } = useSelector((state) => state.product); 
 
-  const [products, setProducts] = useState([]);
+  // useSelector is used to get data from state and useDispatch is used to update state
 
   useEffect(() => {
-    const fetchProduct = () => {
-      fetch("https://api.escuelajs.co/api/v1/products", {
-        method: "GET",
-      })
-        .then((response) => response.json())
-        .then((data) => setProducts(data));
-    };
-    fetchProduct();
+    dispatch(fetchProducts());
   }, []);
 
   const addProduct = (product) => {
     dispatch(add(product));
   };
+
+  if (status === "ERROR") {
+    return <h1>ERROR</h1>;
+  }
 
   return (
     <>
