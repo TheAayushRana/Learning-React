@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Object.freeze() method freezes object means existing properties can not be changed
+export const STATUS = Object.freeze({
+  IDLE: "idle",
+  ERROR: "error",
+  LOADING: "loading",
+});
+
 const productSlice = createSlice({
   name: "Product",
   initialState: {
@@ -23,14 +30,14 @@ export default productSlice.reducer;
 export function fetchProducts() {
   // When fetchProducts() is called it returns a new async function
   return async function fetchProductThunk(dispatch, getState) {
-    dispatch(setStatus("LOADING"));
+    dispatch(setStatus(STATUS.LOADING));
     try {
       const res = await fetch("https://api.escuelajs.co/api/v1/products");
       const data = await res.json();
       dispatch(setProducts(data));
-      dispatch(setStatus("IDLE"));
+      dispatch(setStatus(STATUS.IDLE));
     } catch (error) {
-      dispatch(setStatus("ERROR"));
+      dispatch(setStatus(STATUS.ERROR));
       return;
     }
   };
