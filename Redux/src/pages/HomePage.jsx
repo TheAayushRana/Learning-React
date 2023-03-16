@@ -10,6 +10,7 @@ function HomePage() {
   // useSelector is used to get state and useDispatch is used to update state
 
   useEffect(() => {
+    // dispatch the thunk as needed in the app
     dispatch(fetchProducts());
   }, []);
 
