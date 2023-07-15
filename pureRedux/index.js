@@ -1,6 +1,11 @@
 import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger'
 
+// action const names
+const inc = 'increment';
+const dec = 'decrement';
+const incByValue = 'incrementByValue';
+
 const store = createStore(reducer, applyMiddleware(logger.default));
 
 const array = [];
@@ -8,13 +13,13 @@ const array = [];
 // reducer
 function reducer(state = { count: 1 }, action) {
   // immutability
-  if (action.type === 'increment') {
+  if (action.type === inc) {
     return {count : state.count+1}
   }
-  else if (action.type === 'decrement') {
+  else if (action.type === dec) {
     return {count : state.count-1}
   }
-  else if (action.type === 'incrementByValue') {
+  else if (action.type === incByValue) {
     return {count : state.count + action.payload}
   }
   return state;
@@ -29,7 +34,18 @@ function reducer(state = { count: 1 }, action) {
 // state
 // console.log(store.getState());
 
+// action creators 
+function increment(){
+  return { type : inc}
+}
+function decrement(){
+  return { type : dec}
+}
+function incrementByValue(value){
+  return { type : incByValue, payload: value}
+}
+
 // action
-setInterval(() => store.dispatch({ type: 'incrementByValue', payload:10 }), 2000);
+setInterval(() => store.dispatch(decrement()), 2000);
 
 // console.log(store.getState());
