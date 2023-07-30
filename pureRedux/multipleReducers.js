@@ -1,7 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux"
 import logger from "redux-logger";
 import thunk from 'redux-thunk';
-import axios from "axios"
 
 const inc  = "account/increment"; // stateName/actionType
 const dec  = "account/decrement";
@@ -29,8 +28,11 @@ function accountReducer(state = { amount: 1 }, action){
 function bonusReducer(state = { points: 0 } ,action){
   switch(action.type){
     case inc: 
-      if(action.payload > 100){
+      if(action.payload > 100 && action.payload < 1000){
         return { points: state.points + 1}
+      }
+      else if(action.payload >= 1000){
+        return { point: state.points + 5}
       }
       return state
     case incBonus: return { points: state.points + 1 }
