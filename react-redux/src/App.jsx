@@ -1,19 +1,29 @@
-import './app.css'
-import Amount from './components/Amount'
-import Bonus from './components/Bonus'
+import { useSelector } from 'react-redux';
+import './app.css';
+import Amount from './components/Amount';
+import Bonus from './components/Bonus';
 
-function App({ store }) {
+function App() {
+  // state yaha par global state ha
+  const amount = useSelector((state) => state.account.amount);
+  const points = useSelector((state) => state.bonus.points);
+  const account = useSelector((state) => state.account);
 
   return (
     <div>
       <h4> App </h4>
-      <h3> Current Amount : {store.getState().account.amount}</h3>  
-      <h3> Total Bonus Amount :  {store.getState().bonus.points} </h3>  
-
-      <Amount store={store} />
-      <Bonus store={store} />
+      {account.loading ? (
+        <p> Loading..... </p>
+      ) : account.error ? (
+        <p> Error {account.error} </p>
+      ) : (
+        <h3> Current Amount : ${amount}</h3>
+      )}
+      <h3> Total Bonus Amount : {points} </h3>
+      <Amount />
+      <Bonus />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
